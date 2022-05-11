@@ -1,4 +1,4 @@
 - 👋 Hi, I'm @BeneKenobi
 - 👀 I'm interested in all things IT 👨‍💻, but currently especially bioinformatics 🧬 and data science 📊
-- 👨‍💼 I'm employed as an IT Project Manager at the [Department of Human Genetics](https://www.mhh.de/en/human-genetics) of [Hanover Medical School (MHH)](https://www.mhh.de/en)
+- 👨‍💼 I'm employed as an IT Project Manager at the [Department of Human Genetics](https://www.mhh.de/en/human-genetics) at [Hanover Medical School (MHH)](https://www.mhh.de/en)
 - 👨‍🎓 I'm studying at the [FOM Hochschule](https://www.fom.de/) to get my Bachelor of Science in Business IT
