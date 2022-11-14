@@ -1,4 +1,4 @@
-Hi, I'm @BeneKenobi 👋
+Hi, I'm Benedikt Schnur 👋
 
 I'm interested in all things IT 👨‍💻, but currently especially bioinformatics 🧬, data engineering/science 📊 and machine learning 🤖🧠.
 
