@@ -6,6 +6,6 @@ Hi, I'm Benedikt Schnur 👋
 
 🛠️ Currently, diving into the world of Rust 🦀 is broadening my technical repertoire, embracing its renowned performance and safety for future projects. Harnessing a diverse technical suite, I utilize Python 🐍, R 📊, TypeScript ⌨️, React Native 📱, and enhance web development with HTML5 🌐. Containerization with Docker 🐳 and Singularity 📦 further complements my skill set, with several projects leveraging cloud functions from AWS and Google Cloud ☁️.
 
-My enthusiasm thrives on uniting IT 💻 and healthcare 🏥, crafting data-driven solutions that are integral to advancing patient treatment and biomedical research, a fundamental pillar for the future of health services.
+My enthusiasm thrives on uniting IT 💻 and healthcare 🏥, crafting data-driven solutions that are integral to advancing patient treatment and biomedical research, as a fundamental pillar for the future of health services.
 
 [![ORCID iD](https://user-images.githubusercontent.com/1708125/207055290-f1c6dfde-9a79-4adc-bd91-aff171414178.png) 0000-0002-1977-7878](https://orcid.org/0000-0002-1977-7878)
