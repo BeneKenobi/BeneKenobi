@@ -37,11 +37,11 @@
     }
 
     .color::after {
-      content: attr(data-color);
-      display: block;
-      font-size: 1rem;
-      line-height: normal;
-      margin-top: -0.5rem;
+    content: attr(data-color);
+    display: block;
+    font-size: 2rem;  /* Adjusted font size */
+    line-height: 33.33vh;  /* Adjusted line height */
+    margin-top: -0.5rem;
     }
 
     #toggle-btn {
@@ -98,14 +98,16 @@
     const brighterColors = ["#70709e", "#ddd53e", "#4aa89b", "#ca115c", "#4ab0e2", "#8c6161", "#a1a1c3", "#2ee2e0", "#9d9db3"];
 
     toggleBtn.addEventListener('click', () => {
-      isBright = !isBright;
-      const newColors = isBright ? brighterColors : originalColors;
-      colors.forEach((color, index) => {
+    isBright = !isBright;
+    const newColors = isBright ? brighterColors : originalColors;
+    colors.forEach((color, index) => {
         color.style.backgroundColor = newColors[index];
         color.setAttribute('data-color', newColors[index]);
-      });
-      toggleBtnIcon.textContent = isBright ? 'dark_mode' : 'light_mode';
-      toggleBtnIcon.style.color = isBright ? '#000' : '#fff';
+        // Additional line to update the display text
+        color.dataset.color = newColors[index]; 
+        });
+    toggleBtnIcon.textContent = isBright ? 'dark_mode' : 'light_mode';
+    toggleBtnIcon.style.color = isBright ? '#000' : '#fff';
     });
 
     colors.forEach(color => {
