@@ -79,14 +79,14 @@
 <body>
   <button id="toggle-btn"><i class="material-symbols-rounded" id="toggle-btn-icon">light_mode</i></button>
   <div class="color" style="background-color:#47476b;" data-color="#47476b"></div>
-  <div class="color" style="background-color:#cda715;" data-color="#cda715"></div>
-  <div class="color" style="background-color:#318986;" data-color="#318986"></div>
+  <div class="color" style="background-color:#6B5706;" data-color="#6B5706"></div>
+  <div class="color" style="background-color:#206260;" data-color="#206260"></div>
   <div class="color" style="background-color:#93003a;" data-color="#93003a"></div>
-  <div class="color" style="background-color:#3081ad;" data-color="#3081ad"></div>
+  <div class="color" style="background-color:#215F80;" data-color="#215F80"></div>
+  <div class="color" style="background-color:#973C2B;" data-color="#973C2B"></div>
+  <div class="color" style="background-color:#008381;" data-color="#008381"></div>
   <div class="color" style="background-color:#6d3d3d;" data-color="#6d3d3d"></div>
-  <div class="color" style="background-color:#79779f;" data-color="#79779f"></div>
-  <div class="color" style="background-color:#00c1bf;" data-color="#00c1bf"></div>
-  <div class="color" style="background-color:#777586;" data-color="#777586"></div>
+  <div class="color" style="background-color:#595865;" data-color="#595865"></div>
 
   <script>
     const colors = document.querySelectorAll('.color');
@@ -94,8 +94,8 @@
     const toggleBtnIcon = document.querySelector('#toggle-btn-icon');
     const body = document.querySelector('body');
     let isBright = false;
-    const originalColors = ["#47476b", "#cda715", "#318986", "#93003a", "#3081ad", "#6d3d3d", "#79779f", "#00c1bf", "#777586"];
-    const brighterColors = ["#70709e", "#ddd53e", "#4aa89b", "#ca115c", "#4ab0e2", "#8c6161", "#a1a1c3", "#2ee2e0", "#9d9db3"];
+    const originalColors = ["#47476b", "#6B5706", "#206260", "#93003a", "#215F80", "#973C2B", "#008381", "#6d3d3d", "#595865"];
+    const brighterColors = ["#7171A7", "#B29211", "#3BA4A0", "#E80060", "#3D9ED2", "#FC6914", "#00B2B0", "#A96262", "#9593A8"];
 
     toggleBtn.addEventListener('click', () => {
     isBright = !isBright;
