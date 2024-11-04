@@ -37,17 +37,17 @@
     }
 
     .color::after {
-    content: attr(data-color);
-    display: block;
-    font-size: 2rem;  /* Adjusted font size */
-    line-height: 33.33vh;  /* Adjusted line height */
-    margin-top: -0.5rem;
+      content: attr(data-color);
+      display: block;
+      font-size: 2rem;
+      line-height: 33.33vh;
+      margin-top: -0.5rem;
     }
 
-    #toggle-btn {
+    #toggle-btn,
+    #copy-btn {
       position: absolute;
       top: 0;
-      right: 0;
       padding: 10px;
       cursor: pointer;
       opacity: 1;
@@ -57,11 +57,21 @@
       opacity: 0.5;
     }
 
-    #toggle-btn:hover {
+    #toggle-btn:hover,
+    #copy-btn:hover {
       opacity: 1;
     }
 
-    #toggle-btn-icon {
+    #toggle-btn {
+      right: 50px;
+    }
+
+    #copy-btn {
+      right: 0;
+    }
+
+    #toggle-btn-icon,
+    #copy-btn-icon {
       font-size: 36px;
       color: #fff;
     }
@@ -73,11 +83,65 @@
         'GRAD' 0,
         'opsz' 40
     }
+
+    /* Modal styles */
+    #palette-modal {
+      display: none;
+      position: fixed;
+      z-index: 10;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.5);
+    }
+
+    #palette-modal-content {
+      background-color: white;
+      margin: 15% auto;
+      padding: 20px;
+      border: 1px solid #888;
+      width: 80%;
+    }
+
+    #close-modal {
+      float: right;
+      font-size: 24px;
+      cursor: pointer;
+    }
+
+    textarea {
+      width: 100%;
+      height: 100px;
+      margin-top: 10px;
+      padding: 10px;
+      font-size: 16px;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      resize: none;
+    }
+
+    textarea[readonly] {
+      background-color: #f7f7f7;
+    }
+
+    #copy-palette {
+      margin-top: 20px;
+      cursor: pointer;
+      padding: 10px;
+      background-color: #007BFF;
+      color: white;
+      border: none;
+      border-radius: 5px;
+    }
   </style>
 </head>
 
 <body>
   <button id="toggle-btn"><i class="material-symbols-rounded" id="toggle-btn-icon">light_mode</i></button>
+  <button id="copy-btn"><i class="material-symbols-rounded" id="copy-btn-icon">content_copy</i></button>
+
+  <!-- Color blocks -->
   <div class="color" style="background-color:#47476b;" data-color="#47476b"></div>
   <div class="color" style="background-color:#6B5706;" data-color="#6B5706"></div>
   <div class="color" style="background-color:#206260;" data-color="#206260"></div>
@@ -88,34 +152,66 @@
   <div class="color" style="background-color:#6d3d3d;" data-color="#6d3d3d"></div>
   <div class="color" style="background-color:#595865;" data-color="#595865"></div>
 
+  <!-- Modal -->
+  <div id="palette-modal" style="font-size: medium;">
+    <div id="palette-modal-content">
+      <span id="close-modal">&times;</span>
+      <h2>Current Palette</h2>
+      
+      <h3>Python Tuple:</h3>
+      <textarea id="python-code" readonly></textarea>
+
+      <h3>R Code:</h3>
+      <textarea id="r-code" readonly></textarea>
+    </div>
+  </div>
+
   <script>
     const colors = document.querySelectorAll('.color');
     const toggleBtn = document.querySelector('#toggle-btn');
     const toggleBtnIcon = document.querySelector('#toggle-btn-icon');
-    const body = document.querySelector('body');
+    const copyBtn = document.querySelector('#copy-btn');
+    const modal = document.querySelector('#palette-modal');
+    const closeModal = document.querySelector('#close-modal');
+    const pythonTextarea = document.querySelector('#python-code');
+    const rTextarea = document.querySelector('#r-code');
+    const copyPaletteBtn = document.querySelector('#copy-palette');
+    
     let isBright = false;
     const originalColors = ["#47476b", "#6B5706", "#206260", "#93003a", "#215F80", "#973C2B", "#008381", "#6d3d3d", "#595865"];
     const brighterColors = ["#7171A7", "#B29211", "#3BA4A0", "#E80060", "#3D9ED2", "#FC6914", "#00B2B0", "#A96262", "#9593A8"];
 
+    // Toggle color palette
     toggleBtn.addEventListener('click', () => {
-    isBright = !isBright;
-    const newColors = isBright ? brighterColors : originalColors;
-    colors.forEach((color, index) => {
+      isBright = !isBright;
+      const newColors = isBright ? brighterColors : originalColors;
+      colors.forEach((color, index) => {
         color.style.backgroundColor = newColors[index];
         color.setAttribute('data-color', newColors[index]);
-        // Additional line to update the display text
-        color.dataset.color = newColors[index]; 
-        });
-    toggleBtnIcon.textContent = isBright ? 'dark_mode' : 'light_mode';
-    toggleBtnIcon.style.color = isBright ? '#000' : '#fff';
+      });
+      toggleBtnIcon.textContent = isBright ? 'dark_mode' : 'light_mode';
+      toggleBtnIcon.style.color = isBright ? '#000' : '#fff';
     });
 
-    colors.forEach(color => {
-      color.addEventListener('click', () => {
-        const colorCode = color.getAttribute('data-color');
-        navigator.clipboard.writeText(colorCode);
-      });
+    // Open the modal to show the palette
+    copyBtn.addEventListener('click', () => {
+      modal.style.display = 'block';
+      const currentColors = Array.from(colors).map(color => color.getAttribute('data-color'));
+      pythonTextarea.value = `(${currentColors.map(color => `'${color}'`).join(', ')})`;
+      rTextarea.value = `c(${currentColors.map(color => `"${color}"`).join(', ')})`;
     });
+
+    // Close modal
+    closeModal.addEventListener('click', () => {
+      modal.style.display = 'none';
+    });
+
+    // Close modal if clicked outside content
+    window.onclick = function(event) {
+      if (event.target == modal) {
+        modal.style.display = "none";
+      }
+    };
   </script>
 </body>
 
